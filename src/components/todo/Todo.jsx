@@ -1,6 +1,6 @@
 import React from 'react'
 import "./Todo.css";
-const Todo = ({todo, todoTitle, setTodoTitle, todos, setTodos}) => {
+const Todo = ({todo, todoTitle, setTodoTitle, todos, setTodos, editableTodo, setEditableTodo}) => {
   // const deleteTodo = id =>setTodos(todos.filter(todo => todo.id !== id));
   const deleteTodo = id =>{
     const deletableIndex = todos.findIndex(todo => todo.id === id);
@@ -16,13 +16,19 @@ const Todo = ({todo, todoTitle, setTodoTitle, todos, setTodos}) => {
     todos[toggleId].completed = !todos[toggleId].completed;
     setTodos([...todos]);
   }
+
+  const editTodo = todo => {
+    setEditableTodo(todo);
+    setTodoTitle(todo.title)
+  }
+
   return (
     <div>
        <ul className="todoLists">
         <li>
           <button style={todo.completed ? {color:'green',textDecoration:'line-through'} : {}} onClick={()=>completeTodo(todo.id)}>{todo.completed ? "Incomplete" : "Complete"}</button>
           <span>{todo.title}</span>
-          <button>Edit</button>
+          <button onClick={()=>editTodo(todo)}>Edit</button>
           <button onClick={()=>deleteTodo(todo.id)}>Delete</button>
         </li>
        </ul>
