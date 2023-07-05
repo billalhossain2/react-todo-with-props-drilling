@@ -7,6 +7,7 @@ const Todo = ({todo, todoTitle, setTodoTitle, todos, setTodos, editableTodo, set
     todos.splice(deletableIndex, 1);
     setTodos([...todos]);
   }
+  
   const completeTodo = id =>{
     // todos.forEach(todo =>{
     //   if(todo.id === id)todo.completed = !todo.completed;

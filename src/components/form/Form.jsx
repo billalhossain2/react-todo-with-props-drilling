@@ -14,6 +14,7 @@ const Form = ({todoTitle, setTodoTitle, todos, setTodos, editableTodo, setEditab
     setTodos([...todos]);
     setEditableTodo(null)
   }
+  
   const submitHandler = (e) => {
     e.preventDefault();
     if(!todoTitle)return alert("Please enter a todo")
