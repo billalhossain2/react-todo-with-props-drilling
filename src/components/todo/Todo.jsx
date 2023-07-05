@@ -1,0 +1,33 @@
+import React from 'react'
+import "./Todo.css";
+const Todo = ({todo, todoTitle, setTodoTitle, todos, setTodos}) => {
+  // const deleteTodo = id =>setTodos(todos.filter(todo => todo.id !== id));
+  const deleteTodo = id =>{
+    const deletableIndex = todos.findIndex(todo => todo.id === id);
+    todos.splice(deletableIndex, 1);
+    setTodos([...todos]);
+  }
+  const completeTodo = id =>{
+    // todos.forEach(todo =>{
+    //   if(todo.id === id)todo.completed = !todo.completed;
+    // })
+    // setTodos([...todos]);
+    const toggleId = todos.findIndex(todo => todo.id === id);
+    todos[toggleId].completed = !todos[toggleId].completed;
+    setTodos([...todos]);
+  }
+  return (
+    <div>
+       <ul className="todoLists">
+        <li>
+          <button style={todo.completed ? {color:'green',textDecoration:'line-through'} : {}} onClick={()=>completeTodo(todo.id)}>{todo.completed ? "Incomplete" : "Complete"}</button>
+          <span>{todo.title}</span>
+          <button>Edit</button>
+          <button onClick={()=>deleteTodo(todo.id)}>Delete</button>
+        </li>
+       </ul>
+    </div>
+  )
+}
+
+export default Todo
